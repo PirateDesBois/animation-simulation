@@ -4,54 +4,72 @@
 @import "../../node_modules/bootstrap/scss/bootstrap.scss"
 
 
-header
-    background-image: linear-gradient(rgba(38, 38, 58, 0.7),rgba(39, 38, 48, 0.6)), url("../img/banner1.jpg")
-    background-size: cover
-    background-repeat: no-repeat
-    
+body
+    background-color: #252527
+#button_launch
+    position: relative
+
+input:focus, button:focus
+    outline: none !important
+    box-shadow: 0 0 0 0 transparent !important
+
+.container
+    width:100vw
+    overflow: hidden
+
+.display-anim
+    width: 100vw
+    height:80vh
+    code
+        position: relative
+        -webkit-animation: blop 3s 
+        animation-iteration-count: 1
+        animation-fill-mode: forwards
+@-webkit-keyframes blop
+    0%
+        top:0px
+        
+    99%
+        top:600px
+        
+        opacity: 100%
+    100%
+        opacity: 0%
+
+/*scrollBAR*/
+::-webkit-scrollbar
+    width: 10px
+/* Track
+::-webkit-scrollbar-track
+    background: #1E1E1E
+/* Handle
+::-webkit-scrollbar-thumb
+    background: #383838
+
+::-webkit-scrollbar-thumb:hover
+    background: #555
+/* Handle on hover*/
+/*scrollBAR*/
 
 
-.navbar-nav
-    li
-        margin-top:35px
-        a:hover
-            background-color: #C42D40
+// test-1 //////////////////////////////////////////////////////
+html
+    width: 100%
+    height: 100%
 
-.carousel-indicators .active
-    color: white
-    width: 6px !important
-    height: 6px !important
-    border: 6px double white
-    margin-top: 7px
+body
+    width: 100%
+    height: 100%
+    margin: 0
+    overflow: hidden
+    background: #222
+    font-family: monospace
 
-.carousel-inner
-    padding-bottom: 150px
-
-.borderbottom
-    background-image: url("../../public/img/bottom_decoration_img.png")
-    background-color: transparent
-    height: 10px
-    background-position: center
-
-.containersect1
-    background-image: url("../img/main_bg.jpg")
-    background-repeat: repeat-x repeat-y
-    height: auto
-    border-bottom: 10px solid transparent
-
-.container:first-of-type
-    background-color: white
-    border: 1px solid #5858584f
-
-    
-    
-
-    
-    
-    
-
-                
-                
-                
-            
-                
+article
+    width: 80%
+    margin: auto
+    font-size: 2em
+    top: 50%
+    position: relative
+    transform: translateY(-50%)
+//fin test-1 //
