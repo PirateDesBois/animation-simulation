@@ -1,231 +1,238 @@
 //animation sur le bouton
 
-let anim2 = document.getElementById("plop")
 let anim = document.getElementById("button_launch").onclick = function () {
-  anim2.setAttribute("class","display-anim")
+  let i = 0
+  setInterval(() => {
+      tableau[tableau_random[i]].setAttribute("class","display-anim")
+      i++
+  }, 1000/tableau.length);
 }
 
-let tableau = document.querySelectorAll('code');
+let tableau = document.querySelectorAll("code")
+
 console.log(tableau);
-// nombres de balises "code"
-console.log(tableau.length);
+// Création d'un tableau avec tout les nombres randoms 
+let tableau_random = []
+for (let i = 0; i < tableau.length; i++) {
+  tableau_random.push(i)
+}
+let shuffleArray = (tableau_random) => {
+  tableau_random.sort(()=> Math.random() - 0.5);
+}
+shuffleArray(tableau_random);
 
-/*création d'un random selectionnant une balise "code" au hasard*/
-let index = Math.floor(Math.random() *48);
-index = tableau[index];
-console.log(index);
-
+console.log(tableau_random);
 
 
 // test-1////////////////////////////////////////////////////////////////
-function WordShuffler(holder,opt){
-    var that = this;
-    var time = 0;
-    this.now;
-    this.then = Date.now();
+// function WordShuffler(holder,opt){
+//     var that = this;
+//     var time = 0;
+//     this.now;
+//     this.then = Date.now();
     
-    this.delta;
-    this.currentTimeOffset = 0;
+//     this.delta;
+//     this.currentTimeOffset = 0;
     
-    this.word = null;
-    this.currentWord = null;
-    this.currentCharacter = 0;
-    this.currentWordLength = 0;
+//     this.word = null;
+//     this.currentWord = null;
+//     this.currentCharacter = 0;
+//     this.currentWordLength = 0;
   
-    var options = {
-      fps : 20,
-      timeOffset : 5,
-      textColor : '#000',
-      fontSize : "50px",
-      useCanvas : false,
-      mixCapital : false,
-      mixSpecialCharacters : false,
-      needUpdate : true,
-//couleurs ////////////////////////////////////
-      colors : [
-        '#f44336','#e91e63','#9c27b0',
-        '#673ab7','#3f51b5','#2196f3',
-        '#03a9f4','#00bcd4','#009688',
-        '#4caf50','#8bc34a','#cddc39',
-        '#ffeb3b','#ffc107','#ff9800',
-        '#ff5722','#795548','#9e9e9e',
-        '#607d8b'
-      ]
-    }
+//     var options = {
+//       fps : 20,
+//       timeOffset : 5,
+//       textColor : '#000',
+//       fontSize : "50px",
+//       useCanvas : false,
+//       mixCapital : false,
+//       mixSpecialCharacters : false,
+//       needUpdate : true,
+// //couleurs ////////////////////////////////////
+//       colors : [
+//         '#f44336','#e91e63','#9c27b0',
+//         '#673ab7','#3f51b5','#2196f3',
+//         '#03a9f4','#00bcd4','#009688',
+//         '#4caf50','#8bc34a','#cddc39',
+//         '#ffeb3b','#ffc107','#ff9800',
+//         '#ff5722','#795548','#9e9e9e',
+//         '#607d8b'
+//       ]
+//     }
   
-    if(typeof opt != "undefined"){
-      for(key in opt){
-        options[key] = opt[key];
-      }
-    }
+//     if(typeof opt != "undefined"){
+//       for(key in opt){
+//         options[key] = opt[key];
+//       }
+//     }
 
-    this.needUpdate = true;
-    this.fps = options.fps;
-    this.interval = 1000/this.fps;
-    this.timeOffset = options.timeOffset;
-    this.textColor = options.textColor;
-    this.fontSize = options.fontSize;
-    this.mixCapital = options.mixCapital;
-    this.mixSpecialCharacters = options.mixSpecialCharacters;
-    this.colors = options.colors;
+//     this.needUpdate = true;
+//     this.fps = options.fps;
+//     this.interval = 1000/this.fps;
+//     this.timeOffset = options.timeOffset;
+//     this.textColor = options.textColor;
+//     this.fontSize = options.fontSize;
+//     this.mixCapital = options.mixCapital;
+//     this.mixSpecialCharacters = options.mixSpecialCharacters;
+//     this.colors = options.colors;
   
-     this.useCanvas = options.useCanvas;
-// caractères //////////////////////////////////
-    this.chars = [
-      'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
-    ];
-// caractères spéciaux ///////////////////////////////////////
-    this.specialCharacters = [
-      '!','§','$','%',
-      '&','/','(',')',
-      '=','?','_','<',
-      '>','^','°','*',
-      '#','-',':',';','~'
-    ]
+//      this.useCanvas = options.useCanvas;
+// // caractères //////////////////////////////////
+//     this.chars = [
+//       'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+//     ];
+// // caractères spéciaux ///////////////////////////////////////
+//     this.specialCharacters = [
+//       '!','§','$','%',
+//       '&','/','(',')',
+//       '=','?','_','<',
+//       '>','^','°','*',
+//       '#','-',':',';','~'
+//     ]
   
-    if(this.mixSpecialCharacters){
-      this.chars = this.chars.concat(this.specialCharacters);
-    }
+//     if(this.mixSpecialCharacters){
+//       this.chars = this.chars.concat(this.specialCharacters);
+//     }
   
-    this.getRandomColor = function () {
-      var randNum = Math.floor( Math.random() * this.colors.length );
-      return this.colors[randNum];
-    }
+//     this.getRandomColor = function () {
+//       var randNum = Math.floor( Math.random() * this.colors.length );
+//       return this.colors[randNum];
+//     }
   
-    //if Canvas
+//     //if Canvas
    
-    this.position = {
-      x : 0,
-      y : 50
-    }
+//     this.position = {
+//       x : 0,
+//       y : 50
+//     }
   
-    //if DOM
-    if(typeof holder != "undefined"){
-      this.holder = holder;
-    }
+//     //if DOM
+//     if(typeof holder != "undefined"){
+//       this.holder = holder;
+//     }
   
-    if(!this.useCanvas && typeof this.holder == "undefined"){
-      console.warn('Holder must be defined in DOM Mode. Use Canvas or define Holder');
-    }
+//     if(!this.useCanvas && typeof this.holder == "undefined"){
+//       console.warn('Holder must be defined in DOM Mode. Use Canvas or define Holder');
+//     }
   
-    this.getRandCharacter = function(characterToReplace){    
-      if(characterToReplace == " "){
-        return ' ';
-      }
-      var randNum = Math.floor(Math.random() * this.chars.length);
-      var lowChoice =  -.5 + Math.random();
-      var picketCharacter = this.chars[randNum];
-      var choosen = picketCharacter.toLowerCase();
-      if(this.mixCapital){
-        choosen = lowChoice < 0 ? picketCharacter.toLowerCase() : picketCharacter;
-      }
-      return choosen;
+//     this.getRandCharacter = function(characterToReplace){    
+//       if(characterToReplace == " "){
+//         return ' ';
+//       }
+//       var randNum = Math.floor(Math.random() * this.chars.length);
+//       var lowChoice =  -.5 + Math.random();
+//       var picketCharacter = this.chars[randNum];
+//       var choosen = picketCharacter.toLowerCase();
+//       if(this.mixCapital){
+//         choosen = lowChoice < 0 ? picketCharacter.toLowerCase() : picketCharacter;
+//       }
+//       return choosen;
       
-    }
+//     }
   
-    this.writeWord = function(word){
-      this.word = word;
-      this.currentWord = word.split('');
-      this.currentWordLength = this.currentWord.length;
+//     this.writeWord = function(word){
+//       this.word = word;
+//       this.currentWord = word.split('');
+//       this.currentWordLength = this.currentWord.length;
   
-    }
+//     }
   
-    this.generateSingleCharacter = function (color,character) {
-      var span = document.createElement('span');
-      span.style.color = color;
-      span.innerHTML = character;
-      return span;
-    }
+//     this.generateSingleCharacter = function (color,character) {
+//       var span = document.createElement('span');
+//       span.style.color = color;
+//       span.innerHTML = character;
+//       return span;
+//     }
   
-    this.updateCharacter = function (time) {
+//     this.updateCharacter = function (time) {
       
-        this.now = Date.now();
-        this.delta = this.now - this.then;
+//         this.now = Date.now();
+//         this.delta = this.now - this.then;
   
          
   
-        if (this.delta > this.interval) {
-          this.currentTimeOffset++;
+//         if (this.delta > this.interval) {
+//           this.currentTimeOffset++;
         
-          var word = [];
+//           var word = [];
   
-          if(this.currentTimeOffset === this.timeOffset && this.currentCharacter !== this.currentWordLength){
-            this.currentCharacter++;
-            this.currentTimeOffset = 0;
-          }
-          for(var k=0;k<this.currentCharacter;k++){
-            word.push(this.currentWord[k]);
-          }
+//           if(this.currentTimeOffset === this.timeOffset && this.currentCharacter !== this.currentWordLength){
+//             this.currentCharacter++;
+//             this.currentTimeOffset = 0;
+//           }
+//           for(var k=0;k<this.currentCharacter;k++){
+//             word.push(this.currentWord[k]);
+//           }
   
-          for(var i=0;i<this.currentWordLength - this.currentCharacter;i++){
-            word.push(this.getRandCharacter(this.currentWord[this.currentCharacter+i]));
-          }
+//           for(var i=0;i<this.currentWordLength - this.currentCharacter;i++){
+//             word.push(this.getRandCharacter(this.currentWord[this.currentCharacter+i]));
+//           }
 
-          if(that.useCanvas){
-            c.clearRect(0,0,stage.x * stage.dpr , stage.y * stage.dpr);
-            c.font = that.fontSize + " sans-serif";
-            var spacing = 0;
-            word.forEach(function (w,index) {
-              if(index > that.currentCharacter){
-                c.fillStyle = that.getRandomColor();
-              }else{
-                c.fillStyle = that.textColor;
-              }
-              c.fillText(w, that.position.x + spacing, that.position.y);
-              spacing += c.measureText(w).width;
-            });
-          }else{
+//           if(that.useCanvas){
+//             c.clearRect(0,0,stage.x * stage.dpr , stage.y * stage.dpr);
+//             c.font = that.fontSize + " sans-serif";
+//             var spacing = 0;
+//             word.forEach(function (w,index) {
+//               if(index > that.currentCharacter){
+//                 c.fillStyle = that.getRandomColor();
+//               }else{
+//                 c.fillStyle = that.textColor;
+//               }
+//               c.fillText(w, that.position.x + spacing, that.position.y);
+//               spacing += c.measureText(w).width;
+//             });
+//           }else{
   
-            if(that.currentCharacter === that.currentWordLength){
-              that.needUpdate = false;
-            }
-            this.holder.innerHTML = '';
-            word.forEach(function (w,index) {
-              var color = null
-              if(index > that.currentCharacter){
-                color = that.getRandomColor();
-              }else{
-                color = that.textColor;
-              }
-              that.holder.appendChild(that.generateSingleCharacter(color, w));
-            }); 
-          }
-          this.then = this.now - (this.delta % this.interval);
-        }
-    }
+//             if(that.currentCharacter === that.currentWordLength){
+//               that.needUpdate = false;
+//             }
+//             this.holder.innerHTML = '';
+//             word.forEach(function (w,index) {
+//               var color = null
+//               if(index > that.currentCharacter){
+//                 color = that.getRandomColor();
+//               }else{
+//                 color = that.textColor;
+//               }
+//               that.holder.appendChild(that.generateSingleCharacter(color, w));
+//             }); 
+//           }
+//           this.then = this.now - (this.delta % this.interval);
+//         }
+//     }
   
-    this.restart = function () {
-      this.currentCharacter = 0;
-      this.needUpdate = true;
-    }
+//     this.restart = function () {
+//       this.currentCharacter = 0;
+//       this.needUpdate = true;
+//     }
   
-    function update(time) {
-      time++;
-      if(that.needUpdate){
-        that.updateCharacter(time);
-      }
-      requestAnimationFrame(update);
-    }
+//     function update(time) {
+//       time++;
+//       if(that.needUpdate){
+//         that.updateCharacter(time);
+//       }
+//       requestAnimationFrame(update);
+//     }
   
-    this.writeWord(this.holder.innerHTML);
-    console.log(this.currentWord);
-    update(time);
-  }
+//     this.writeWord(this.holder.innerHTML);
+//     console.log(this.currentWord);
+//     update(time);
+//   }
 
-  var headline = document.getElementById('headline');
-  var text = document.getElementById('text');
-  var shuffler = document.getElementById('shuffler');
+//   var headline = document.getElementById('headline');
+//   var text = document.getElementById('text');
+//   var shuffler = document.getElementById('shuffler');
   
-  var headText = new WordShuffler(headline,{
-    textColor : '#fff',
-    timeOffset : 18,
-    mixCapital : true,
-    mixSpecialCharacters : true
-  });
+//   var headText = new WordShuffler(headline,{
+//     textColor : '#fff',
+//     timeOffset : 18,
+//     mixCapital : true,
+//     mixSpecialCharacters : true
+//   });
   
-  var pText = new WordShuffler(text,{
-    textColor : '#fff',
-    timeOffset : 2
-  });
+//   var pText = new WordShuffler(text,{
+//     textColor : '#fff',
+//     timeOffset : 2
+//   });
 
 //fin test-1/////////////////////////////////////////////////////

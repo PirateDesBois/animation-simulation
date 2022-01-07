@@ -8,6 +8,8 @@ body
     background-color: #252527
 #button_launch
     position: relative
+#button_launch:hover
+    background-color: #ff0000
 
 input:focus, button:focus
     outline: none !important
@@ -19,12 +21,12 @@ input:focus, button:focus
 
 .display-anim
     width: 100vw
-    height:80vh
-    code
-        position: relative
-        -webkit-animation: blop 3s 
-        animation-iteration-count: 1
-        animation-fill-mode: forwards
+    height:800vh
+    position: relative
+    -webkit-animation: blop 3s 
+    animation-iteration-count: 1
+    animation-fill-mode: forwards
+    animation-direction: reverse
 @-webkit-keyframes blop
     0%
         top:0px
@@ -72,4 +74,4 @@ article
     top: 50%
     position: relative
     transform: translateY(-50%)
-//fin test-1 //
+// fin test-1 //
