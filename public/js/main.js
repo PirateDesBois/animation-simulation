@@ -1,12 +1,63 @@
-//animation sur le bouton
+//text-tape
+// let plop = (cible,vitesse) => {
+//   let visible = document.querySelector(cible)
+//   let contenu = visible.innerText
+//   let phrase = ""
+//   let i = 0
+//   let blop = setInterval(() => {
+//       console.log("hello");
+//       phrase = phrase.concat(contenu[i])
+//       visible.innerText = phrase
+//       if (i == contenu.length -1) {
+//           clearInterval(blop)
+//       }
+//       i++ 
+//   }, vitesse/contenu.length);
+// }
+// plop(".intro_code",7000)
 
-let anim = document.getElementById("button_launch").onclick = function () {
+document.addEventListener('DOMContentLoaded',function(event){
+  var dataText = [ "Welcome on my Website", "To continue, press Enter button"];
+  
+  function typeWriter(text, i, fnCallback) {
+    if (i < (text.length)) {
+     document.querySelector(".intro_code").innerHTML = text.substring(0, i+1) ;
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    else if (typeof fnCallback == 'function') {
+      setTimeout(fnCallback, 1000);
+    }
+  }
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 20000);
+     }
+    if (i < dataText[i].length) {
+     typeWriter(dataText[i], 0, function(){
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
+
+
+//animation sur le bouton
+document.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    document.querySelector(".cursor").setAttribute("class","none");
   let i = 0
   setInterval(() => {
       tableau[tableau_random[i]].setAttribute("class","display-anim")
       i++
-  }, 1000/tableau.length);
-}
+  }, 10000/tableau.length);
+  };
+})
 
 let tableau = document.querySelectorAll("code")
 
@@ -22,6 +73,8 @@ let shuffleArray = (tableau_random) => {
 shuffleArray(tableau_random);
 
 console.log(tableau_random);
+
+
 
 
 // test-1////////////////////////////////////////////////////////////////
@@ -50,13 +103,8 @@ console.log(tableau_random);
 //       needUpdate : true,
 // //couleurs ////////////////////////////////////
 //       colors : [
-//         '#f44336','#e91e63','#9c27b0',
-//         '#673ab7','#3f51b5','#2196f3',
-//         '#03a9f4','#00bcd4','#009688',
-//         '#4caf50','#8bc34a','#cddc39',
-//         '#ffeb3b','#ffc107','#ff9800',
-//         '#ff5722','#795548','#9e9e9e',
-//         '#607d8b'
+//         '#00fdbedf','#7eeb7adf','#af32e9df',
+//         '#b5b2b8df','#eaec4fdf','#ff0000df',
 //       ]
 //     }
   
@@ -127,7 +175,6 @@ console.log(tableau_random);
 //         choosen = lowChoice < 0 ? picketCharacter.toLowerCase() : picketCharacter;
 //       }
 //       return choosen;
-      
 //     }
   
 //     this.writeWord = function(word){
@@ -148,9 +195,7 @@ console.log(tableau_random);
       
 //         this.now = Date.now();
 //         this.delta = this.now - this.then;
-  
-         
-  
+
 //         if (this.delta > this.interval) {
 //           this.currentTimeOffset++;
         
@@ -235,4 +280,4 @@ console.log(tableau_random);
 //     timeOffset : 2
 //   });
 
-//fin test-1/////////////////////////////////////////////////////
+// fin test-1/////////////////////////////////////////////////////

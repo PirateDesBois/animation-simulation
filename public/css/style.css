@@ -6137,6 +6137,10 @@ readers do not read off random characters that represent icons */
   color: #eaec4fdf;
 }
 
+.red {
+  color: #ff0000df;
+}
+
 .underline {
   text-decoration: underline;
 }
@@ -20490,6 +20494,10 @@ body {
   background-color: #252527;
 }
 
+code {
+  color: #921dc0;
+}
+
 #button_launch {
   position: relative;
 }
@@ -20515,7 +20523,6 @@ input:focus, button:focus {
   -webkit-animation: blop 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  animation-direction: reverse;
 }
 
 @-webkit-keyframes blop {
@@ -20551,11 +20558,6 @@ input:focus, button:focus {
 
 /* Handle on hover*/
 /*scrollBAR*/
-html {
-  width: 100%;
-  height: 100%;
-}
-
 body {
   width: 100%;
   height: 100%;
@@ -20565,13 +20567,36 @@ body {
   font-family: monospace;
 }
 
-article {
-  width: 80%;
-  margin: auto;
-  font-size: 2em;
-  top: 50%;
+article h2, article .h2 {
+  font-size: 20px;
+  font-weight: lighter !important;
+  margin-top: 150px;
   position: relative;
   transform: translateY(-50%);
+}
+article #text {
+  margin: 0px;
+  font-size: 20px !important;
+  font-weight: lighter !important;
+}
+
+.cursor {
+  height: 15px;
+  width: 2px;
+  display: inline-block;
+  animation-name: cursor2;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes cursor2 {
+  0% {
+    background-color: #252527;
+  }
+  100% {
+    background-color: white;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

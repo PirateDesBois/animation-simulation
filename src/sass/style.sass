@@ -6,6 +6,10 @@
 
 body
     background-color: #252527
+
+code
+    color: #921dc0
+
 #button_launch
     position: relative
 #button_launch:hover
@@ -26,7 +30,6 @@ input:focus, button:focus
     -webkit-animation: blop 3s 
     animation-iteration-count: 1
     animation-fill-mode: forwards
-    animation-direction: reverse
 @-webkit-keyframes blop
     0%
         top:0px
@@ -54,10 +57,7 @@ input:focus, button:focus
 /*scrollBAR*/
 
 
-// test-1 //////////////////////////////////////////////////////
-html
-    width: 100%
-    height: 100%
+// test-1 
 
 body
     width: 100%
@@ -68,10 +68,34 @@ body
     font-family: monospace
 
 article
-    width: 80%
-    margin: auto
-    font-size: 2em
-    top: 50%
-    position: relative
-    transform: translateY(-50%)
-// fin test-1 //
+    h2
+        font-size: 20px
+        font-weight: lighter !important
+        margin-top: 150px
+        position: relative
+        transform: translateY(-50%)
+    #text
+        margin: 0px
+        font-size: 20px !important
+        font-weight: lighter !important
+// fin test-1
+// text-tape
+
+.cursor
+    height:15px
+    width: 2px
+    display: inline-block
+    background-color:black
+    animation-name: cursor2
+    animation-duration: 0.7s
+    animation-iteration-count: infinite
+    animation-timing-function: ease-in-out
+    animation-fill-mode: forwards
+
+
+@keyframes cursor2
+    0%
+        background-color: #252527
+    
+    100%
+        background-color: white
